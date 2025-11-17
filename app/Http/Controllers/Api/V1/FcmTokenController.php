@@ -18,7 +18,7 @@ class FcmTokenController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'token' => ['required', 'string'],
+            'fcm_token' => ['required', 'string'],
             'device_name' => ['nullable', 'string', 'max:255'],
         ]);
 
@@ -27,7 +27,7 @@ class FcmTokenController extends Controller
 
         $token = $this->service->registerToken(
             user: $user,
-            token: $validated['token'],
+            token: $validated['fcm_token'],
             deviceName: $validated['device_name'] ?? null,
         );
 
